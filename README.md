@@ -3,6 +3,18 @@
 
 Check [the website](http://dockercheatsheet.painlessdocker.com).
 
+# Table of Contents
+
+   * [Installation](#installation)
+   * [Docker Registries &amp; Repositories](#docker-registries--repositories)
+   * [Running Containers](#running-containers)
+   * [Starting &amp; Stopping Containers](#starting--stopping-containers)
+   * [Getting Information about Containers](#getting-information-about-containers)
+   * [Networking](#networking)
+   * [Cleaning Docker](#cleaning-docker)
+   * [Docker Swarm](#docker-swarm)
+   * [Notes](#notes)
+
 # Installation
 
 ## Linux
@@ -80,6 +92,17 @@ docker push eon01/nginx localhost:5000/myadmin/nginx
 ```
 
 # Running Containers
+
+## Create and Run a Simple Container
+
+> - Start an [ubuntu:latest](https://hub.docker.com/_/ubuntu/) image
+> - Bind the port `80` from the **CONTAINER** to port `3000` on the **HOST** 
+> - Mount the current directory to `/data` on the CONTAINER 
+> - Note: on **windows** you have to change `-v ${PWD}:/data` to `-v "C:\Data":/data`
+
+```
+docker run --name infinite -it -p 3000:80 -v ${PWD}:/data ubuntu:latest
+```
 
 ## Creating a Container
 
@@ -182,6 +205,12 @@ docker ps -a
 
 ```
 docker logs infinite
+```
+
+## Follow Container Logs
+
+```
+docker logs infinite -f
 ```
 
 ## Inspecting Containers
